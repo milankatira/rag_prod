@@ -11,14 +11,15 @@ def load_text_file():
         temp_file_path = temp_file.name
 
     try:
-        #load the text file using the TextLoader
+        # Load the text file using TextLoader
         loader = TextLoader(temp_file_path)
         documents = loader.load()
 
         # Print the loaded documents
-        for document in documents:
-            print(document)
-            print(document.page_content)
+        print(f"Loaded {len(documents)} document(s)")
+        print(f"Content preview: {documents[0].page_content[:100]}...")
+        print(f"Metadata: {documents[0].metadata}")
+
 
     except Exception as e:
         print(f"Error loading text file: {e}")
