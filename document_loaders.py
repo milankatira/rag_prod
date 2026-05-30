@@ -3,7 +3,7 @@ load_dotenv()
 import os
 import tempfile
 from pathlib import Path
-from langchain_community.document_loaders import (TextLoader)
+from langchain_community.document_loaders import (TextLoader,PyPDFLoader)
 
 def load_text_file():
     with tempfile.NamedTemporaryFile(delete=False, suffix=".txt") as temp_file:
@@ -27,5 +27,16 @@ def load_text_file():
         # Clean up the temporary file
         os.remove(temp_file_path)
 
+def pdf_loader(pdf_path: str):
+    loader = PyPDFLoader(pdf_path)
+    documents = loader.load()
+
+    print(f"Loaded {len(documents)} document(s) from PDF")
+    for i, doc in enumerate(documents):
+        print(f"Document {i+1} Content Preview: {doc.page_content[:100]}...")
+        print(f"Metadata: {doc.metadata}")
+
+
 if __name__ == "__main__":
     load_text_file()
+    pdf_loader("./docs/langchain_demo.pdf")
