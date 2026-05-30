@@ -37,6 +37,8 @@ def pdf_loader(pdf_path: str):
         print(f"Metadata: {doc.metadata}")
 
 
+
+
 if __name__ == "__main__":
     load_text_file()
     pdf_loader("./docs/langchain_demo.pdf")
